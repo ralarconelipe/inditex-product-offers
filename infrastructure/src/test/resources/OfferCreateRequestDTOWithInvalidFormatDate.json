@@ -1,0 +1,11 @@
+{
+  "offerId": 1,
+  "brandId": 1,
+  "startDate": "2025-05-14 00:00:00",
+  "endDate": "2025-05-14 23:59:59",
+  "priceListId": 1,
+  "productPartnumber": "0001005",
+  "priority": 1,
+  "price": 12.55,
+  "currencyIso": "EUR"
+}

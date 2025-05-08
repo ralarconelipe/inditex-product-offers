@@ -1,0 +1,85 @@
+# OPEN API
+springdoc:
+  # springdoc-openapi-core properties
+  api-docs:
+    # custom path of the OpenAPI documentation in Json format
+    path: /v3/api-docs
+  # swagger-ui properties
+  swagger-ui:
+    # custom path for API documentation
+    path: /swagger-ui.html
+
+# OPEN API properties
+offer:
+  openapi:
+    title: Offer application REST API
+    description: REST API exposed to check the endpoints defined by the **Offers** service
+    # to use project.version the property <resource.delimiter>@</resource.delimiter> is necessary
+    version: @project.version@
+    contact-name: Product Offer Team
+    contact-url: https://confluence
+    contact-email: product-offers@inditex.es
+    license-name: Inditex
+    license-url: https://inditex.local.es
+    security: basic
+    security-scheme: basicScheme
+
+# SPRING
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.H2Dialect
+    properties.hibernate.dialect: org.hibernate.dialect.H2Dialect
+    hibernate.ddl-auto: update
+
+  h2:
+    console:
+      enabled: true
+      # default path: h2-console (http://localhost:8080/h2-ui)
+      #path: /h2-ui
+      path: /h2-console
+      settings:
+        trace: true
+        web-allow-others: false
+
+  # JACKSON
+  jackson:
+    default-property-inclusion: non-null
+    deserialization:
+      fail-on-unknown-properties: true
+    serialization:
+      indent-output: true
+      fail-on-unwrapped-type-identifiers: false
+
+# SERVER properties
+
+server:
+  port: 8080
+  error:
+    # This properties must be in application.yml to include the message in HttpResponseException
+    includeMessage: ALWAYS
+    include-exception: true
+    include-stacktrace: ALWAYS
+
+# Actuator
+management:
+  endpoints.web.exposure.include: '*'
+  endpoint.health.show-details: always
+  server.port: 8081
+
+# LOGGING LEVEL
+logging:
+  level:
+    root: INFO
+    com.inditex.product.offer: INFO
+    org.springframework.web: INFO
+    hibernate.SQL: INFO
+  file:
+    path: logs
+
